@@ -49,11 +49,11 @@ It demonstrates SQL skills required for a Data Analyst role, including dataset c
 ## ▶️ How to Run This Project
 
 ### **Step 1 — Create the table**
-Run file:
+
 ### **Step 2 — Insert sample records (100 rows)**
-Run:
+
 ### **Step 3 — Run queries**
-Run:
+
 ---
 
 ## 📈 Key Insights (Sample)
