@@ -1,8 +1,8 @@
--- Sales Analysis SQL Queries
+Sales Analysis SQL Queries
 
-/* --------------------------------------------------------
+
    Task 1: Total Revenue Calculation
----------------------------------------------------------*/
+
 SELECT 
     SUM(s.quantity * p.price) AS total_revenue
 FROM sales s
@@ -10,9 +10,9 @@ JOIN product p
     ON s.product_id = p.product_id;
 
 
-/* --------------------------------------------------------
+
    Task 2: Monthly Revenue Trend
----------------------------------------------------------*/
+
 SELECT 
     DATE_TRUNC('month', s.sales_date) AS month,
     SUM(s.quantity * p.price) AS revenue
@@ -23,9 +23,9 @@ GROUP BY month
 ORDER BY month;
 
 
-/* --------------------------------------------------------
+
    Task 3: Top 10 Best Selling Products
----------------------------------------------------------*/
+
 SELECT 
     p.product_name,
     SUM(s.quantity) AS total_sold
@@ -37,9 +37,9 @@ ORDER BY total_sold DESC
 LIMIT 10;
 
 
-/* --------------------------------------------------------
+
    Task 4: Customer Lifetime Value (LTV)
----------------------------------------------------------*/
+
 SELECT 
     c.customer_name,
     SUM(s.quantity * p.price) AS lifetime_value
@@ -52,9 +52,9 @@ GROUP BY c.customer_name
 ORDER BY lifetime_value DESC;
 
 
-/* --------------------------------------------------------
+
    Task 5: Year-over-Year Revenue Growth
----------------------------------------------------------*/
+
 WITH yearly AS (
     SELECT 
         EXTRACT(YEAR FROM s.sales_date) AS year,
@@ -72,4 +72,5 @@ SELECT
         (revenue - LAG(revenue) OVER (ORDER BY year)) 
         / NULLIF(LAG(revenue) OVER (ORDER BY year), 0) * 100, 2
     ) AS yoy_growth_percent
+
 FROM yearly;
